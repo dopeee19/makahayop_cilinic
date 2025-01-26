@@ -46,7 +46,7 @@ def appointment_create(request):
         return redirect('home')
 
     return render(request, 'appointment/appointment_form.html')
-@login_required
+
 def customerappointment_create(request):
     if request.method == "POST":
         pet_name = request.POST.get('pet_name')
@@ -213,7 +213,7 @@ def feedback_list(request):
     feedbacks = Feedback.objects.all()
     return render(request, 'feedbacks/feedback_list.html', {'feedbacks': feedbacks})
 
-@login_required
+
 def feedback_create(request):
     if request.method == "POST":
         name = request.POST.get('name')
@@ -299,7 +299,7 @@ def register(request):
         if user:
             login(request, user)
             messages.success(request, "Registration successful! You are now logged in.")
-            return redirect('home')
+            return redirect('login')
         else:
             messages.error(request, "Authentication failed.")
             return redirect('register')
@@ -328,4 +328,4 @@ def login_user(request):
 def logout_user(request):
     logout(request)
     messages.success(request, "You have been logged out.")
-    return redirect('login')
+    return redirect('home')

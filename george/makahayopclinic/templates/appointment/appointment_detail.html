@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% include 'header.html' %}
+<style>
+    /* Ensure the page content fills the viewport */
+  
+    /* Appointment card style */
+    .appointment-card {
+        width: 500px;
+        height: 300px;
+        padding: 20px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        margin: auto;
+        margin-top: 100px   ;
+        
+    }
+
+    .appointment-title {
+        font-size: 1.8rem;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .appointment-details {
+        font-size: 1.1rem;
+        margin-bottom: 20px;
+        text-align: left;
+    }
+
+    .appointment-details p {
+        margin-bottom: 10px;
+    }
+
+    .appointment-details strong {
+        font-weight: 600;
+    }
+
+    .appointment-actions {
+        margin-top: 40px;
+    }
+
+    .appointment-actions a {
+        display: inline-block;
+        padding: 12px 15px;
+        margin-right: 10px;
+        font-size: 1rem;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-edit {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    .btn-edit:hover {
+        background-color: #45a049;
+    }
+
+    .btn-back {
+        background-color: #f44336;
+        color: white;
+    }
+
+    .btn-back:hover {
+        background-color: #e53935;
+    }
+</style>
+
+<div class="appointment-card">
+    <h1 class="appointment-title">{{ appointment.pet_name }}</h1>
+    <div class="appointment-details">
+        <p><strong>Owner:</strong> {{ appointment.owner_name }}</p>
+        <p><strong>Date:</strong> {{ appointment.date }}</p>
+        <p><strong>Time:</strong> {{ appointment.time }}</p>
+        <p><strong>Description:</strong> {{ appointment.description }}</p>
+    </div>
+    <div class="appointment-actions">
+        <a href="{% url 'appointment_update' appointment.pk %}" class="btn-edit">Resched</a>
+        <a href="{% url 'appointment_list' %}" class="btn-back">Close</a>
+    </div>
+</div>
+{% endblock %}
+

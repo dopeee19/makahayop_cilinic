@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% include 'header.html' %}
+<h1>{{ vet.name }}</h1>
+<p><strong>Specialty:</strong> {{ vet.specialty }}</p>
+<p><strong>Contact Number:</strong> {{ vet.contact_number }}</p>
+<a href="{% url 'vet_update' vet.pk %}">Edit</a>
+<form action="{% url 'vet_delete' vet.pk %}" method="post" style="display:inline;">
+    {% csrf_token %}
+    <button type="submit">Delete</button>
+</form>
+<a href="{% url 'vet_list' %}">Back to List</a>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h1>Are you sure you want to delete "{{ vet.name }}"?</h1>
+<p>This action cannot be undone.</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Confirm</button>
+</form>
+<a href="{% url 'vet_list' %}">Cancel</a>
+{% endblock %}

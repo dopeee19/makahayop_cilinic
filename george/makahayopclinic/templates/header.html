@@ -1,0 +1,36 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Makahayop Pet Clinic</title>
+    
+
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+
+</head>
+
+<body>
+    <header class="basenav">
+        <div >
+      
+            <nav>
+                <ul>
+                    <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                    <li><a href="{% url 'appointment_list' %}">Appointments</a></li>
+                    <li><a href="{% url 'service_list' %}">Services</a></li>
+                    <li><a href="{% url 'vet_list' %}">Vets</a></li>
+                    <li><a href="{% url 'feedback_list' %}">Feedbacks</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+   
+</body>
+
+</html>

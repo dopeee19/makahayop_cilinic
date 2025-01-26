@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% block head %}
+
+<link rel="stylesheet" href="{% static 'css/form.css' %}">
+    {% endblock %}
+<form method="post">
+    <h1 style="color: black; margin-bottom: 20px;">Register</h1>
+    {% csrf_token %}
+    <label for="username">Username:</label>
+    <input type="text" name="username"  required><br>
+    <label for="first_name">Firstname:</label>
+    <input type="text" name="first_name"required><br>
+    <label for="last_name">Lastname:</label>
+    <input type="text" name="last_name"required><br>
+    <label for="email">Email:</label>
+    <input type="email" name="email"  required><br>
+    <label for="password">Password:</label>
+    <input type="password" name="password" required><br>
+    <label for="confirm_password">Confirm Password:</label>
+    <input type="password" name="confirm_password" required><br>
+    <button type="submit">Register</button><br>
+    <a href="{% url 'login' %}"> Already have account?</a>
+</form>
+{% endblock %}

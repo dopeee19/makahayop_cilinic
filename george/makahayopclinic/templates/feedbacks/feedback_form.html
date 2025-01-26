@@ -1,0 +1,36 @@
+
+{% load static %}
+{% block content %}
+
+{% block head %}
+
+<link rel="stylesheet" href="{% static 'css/form.css' %}">
+    {% endblock %}
+<h1 style="color: black;">{% if feedback %}Edit{% else %}Submit{% endif %} Feedback</h1>
+<form action="{% url 'feedback_create' %}" method="post">
+    {% csrf_token %}
+    
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" value="{{ feedback.name|default:'' }}" required>
+    <br>
+    <label for="contact">Contact Details:</label>
+    <input type="text" id="contact" name="contact" value="{{ feedback.name|default:'' }}" placeholder="Optional" >
+    <br>
+    
+    <label for="rating">Rating:</label>
+    <select id="rating" name="rating" required>
+        <option value="1" {% if feedback.rating == 1 %}selected{% endif %}>Very Poor</option>
+        <option value="2" {% if feedback.rating == 2 %}selected{% endif %}>Poor</option>
+        <option value="3" {% if feedback.rating == 3 %}selected{% endif %}>Average</option>
+        <option value="4" {% if feedback.rating == 4 %}selected{% endif %}>Good</option>
+        <option value="5" {% if feedback.rating == 5 %}selected{% endif %}>Excellent</option>
+    </select>
+    <br>
+    
+    <label for="description">Description:</label>
+    <textarea id="description" name="description" rows="4" cols="50">{{ feedback.description|default:'' }}</textarea>
+    <br>
+    
+    <button type="submit">Save</button>
+</form>
+{% endblock %}

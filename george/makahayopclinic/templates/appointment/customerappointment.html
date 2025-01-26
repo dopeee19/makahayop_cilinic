@@ -1,0 +1,30 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/form.css' %}">
+    {% endblock %}
+<h1 style="color: black;">{% if appointment %}Edit{% else %}Create{% endif %} Appointment</h1>
+<form method="post">
+    {% csrf_token %}
+    <label for="pet_name">Pet Name:</label>
+    <input type="text" id="pet_name" name="pet_name" value="{{ appointment.pet_name|default:'' }}" required>
+    <br>
+    <label for="owner_name">Owner Name:</label>
+    <input type="text" id="owner_name" name="owner_name" value="{{ appointment.owner_name|default:'' }}" required>
+    <br>
+    <label for="date">Date:</label>
+    <input type="date" id="date" name="date" value="{{ appointment.date|default:'' }}" required>
+    <br>
+    <label for="time">Time:</label>
+    <input type="time" id="time" name="time" value="{{ appointment.time|default:'' }}" required>
+    <br>
+    <label for="description">Description:</label>
+    <textarea id="description" name="description" required>{{ appointment.description|default:'' }}</textarea>
+    <br>
+    <button type="submit">Save</button>
+</form>
+<a href="{% url 'home' %}">Cancel</a>
+{% endblock %}

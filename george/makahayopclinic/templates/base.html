@@ -1,0 +1,39 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Makahayop Pet Clinic</title>
+
+    
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" href="{% static 'css/cards.css' %}">
+    
+{% endblock%}
+
+    
+</head>
+
+<body>
+   
+{% include 'header1.html' %}
+ <div class="othercontent">
+
+    {% block content %}
+    
+   
+    
+    {% endblock %}
+
+</div>
+
+
+{% include 'footer.html' %}
+    
+</body>
+
+</html>

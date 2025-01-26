@@ -1,0 +1,61 @@
+/* Example CSS for Appointments List */
+.appointmentlist-container{
+    color: black;
+    text-align: center;
+    padding: 50px;
+}
+
+.top-text {
+    color: black;
+    text-align: left;
+    padding: 10px;
+     
+}
+.top-text button {
+    background-color: #00796b;
+    padding: 10px;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+     
+}
+
+.appointmentlist-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.appointmentlist-container table th, table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.appointmentlist-container table th {
+    background-color: #00796b;
+    color: #fff;
+}
+
+.appointmentlist-container table td a {
+    text-decoration: none;
+    color: #00796b;
+}
+
+.appointmentlist-container table td a:hover {
+    color: #004d40;
+}
+
+.appointmentlist-container-button {
+    background-color: #f44336;
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.appointmentlist-container-button:hover {
+    background-color: #d32f2f;
+}

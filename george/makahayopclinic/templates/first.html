@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+   <section class="hero">
+        <div class="hero-content">
+            <h2>Your Pet's Health is Our Priority</h2>
+            <p>We offer a wide range of services to keep your pets happy and healthy!</p>
+           <a  href="{% url 'customerappointment_create' %}" class="appointmentbtn">Book an Appointment</a>
+        </div>
+    </section>
+
+    <section class="aboutus">
+        <div class="bg">
+            <div class="container">
+                <h2>About Us</h2>
+                <div class="aboutus">
+                    <p>
+                        At Makahayop Pet Clinic, we are dedicated to providing exceptional healthcare for your pets. 
+                        Our experienced team offers a range of services, including veterinary care, grooming, 
+                        and emergency services, all aimed at keeping your pets happy and healthy. 
+                        We treat every pet like family, offering compassionate care in a state-of-the-art facility. 
+                        Thank you for trusting us with your pet's health.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section> <br><br><br><br><br><br><br>
+
+   <h1 style="color: black; font-size: 2.5rem;">Services</h1>
+    <div style="display: flex; justify-content: center;" class="service-list">
+        {% for service in services %}
+            <div class="card">
+                {% if service.image %}
+                    <img class="service-image" src="{{ service.image.url }}" alt="{{ service.name }}">
+                {% endif %}
+                <h3>{{ service.name }}</h3>
+                <p>{{ service.description }}</p>
+                <p><strong>Price:</strong> ${{ service.price|default:"N/A" }}</p>
+                
+            </div>
+        {% empty %}
+           
+        {% endfor %}
+    </div>
+    <h1 style="color: black; font-size: 2.5rem;">Veterinarians</h1>
+    <div style="display: flex; justify-content: center;" class="service-list">
+        {% for vet in vets %}
+            <div class="service-card">
+                {% if vet.image %}
+                    <img class="vetimg" src="{{ vet.image.url }}" alt="{{ vet.name }}">
+                {% endif %}
+                <h3>{{ vet.name }}</h3>
+                <p>{{ vet.specialty }}</p>
+                
+                
+            </div>
+        {% empty %}
+           
+        {% endfor %}
+    </div>
+
+    
+    
+    <br><br><br><br><br><br><br>
+
+    {% include 'feedbacks/feedback_form.html' %}
+    
+    
+{% endblock %}

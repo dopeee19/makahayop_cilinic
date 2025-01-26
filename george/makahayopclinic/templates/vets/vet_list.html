@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+{% include 'header.html' %}
+    {% block head %}
+        <link rel="stylesheet" href="{% static 'css/cards.css' %}">
+    {% endblock %}
+
+    <h1 class="-header">Makahayop Clinic Veterinarains</h1>
+    <button class="addbutton"><a href="{% url 'vet_create' %}">Add New Vet</a></button>
+
+    <div class="service-list">
+        {% for vet in vets %}
+            <div class="card">
+                {% if vet.image %}
+                <img class="service-image" src="{{ vet.image.url }}" alt="{{ vet.name }}">
+                {% endif %}
+                <h3>{{ vet.name }}</h3>
+                <p><strong>Specialty:</strong> {{ vet.specialty }}</p>
+                <p><strong>Contact:</strong> {{ vet.contact_number }}</p>
+                <div class="card-actions">
+                    <a href="{% url 'vet_update' vet.pk %}">Edit</a>
+                    <form action="{% url 'vet_delete' vet.pk %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" onclick="return confirm('Are you sure you want to delete this vet?');">Delete</button>
+                    </form>
+                </div>
+            </div>
+        {% empty %}
+            <p>No vets available.</p>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block content %}
+{% include 'header.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/tables.css' %}">
+{% endblock %}
+
+    <h1 class="-header">Feedbacks</h1>
+
+    <table >
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Contact</th>
+                <th>Rating</th>
+                <th>Comment</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for feedback in feedbacks %}
+                <tr>
+                    <td>{{ feedback.name }}</td>
+                    <td>{{ feedback.contactdetails }}</td>
+                    <td>{{ feedback.rating }} - {{ feedback.get_rating_display }}</td>
+                    <td>{{ feedback.description }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

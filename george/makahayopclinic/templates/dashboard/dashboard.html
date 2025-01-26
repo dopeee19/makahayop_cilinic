@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% include 'header.html' %}
+
+
+    <title>Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+
+
+    <div class="dashboard-container">
+   
+        <!-- Main Content -->
+        <main class="content">
+            <h1>Dashboard</h1><br>
+            
+            <!-- Summary Cards -->
+            <div class="cards">
+                <div class="card">
+                    <h3>Total Appointments</h3>
+                    <p>{{ total_appointments }}</p>
+                </div>
+                <div class="card">
+                    <h3>Total Services</h3>
+                    <p>{{ total_services }}</p>
+                </div>
+                <div class="card">
+                    <h3>Total Vets</h3>
+                    <p>{{ total_vets }}</p>
+                </div>
+                <div class="card">
+                    <h3>Average Rating</h3>
+                    <p>{{ avg_rating }}/5</p>
+                </div>
+            </div>
+
+            <!-- Charts -->
+            <div class="charts">
+                <canvas id="appointmentsChart"></canvas>
+                <canvas id="ratingsChart"></canvas>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Appointments Chart
+        var ctx1 = document.getElementById('appointmentsChart').getContext('2d');
+        new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: {{ dates|safe }},
+                datasets: [{
+                    label: 'Appointments Per Day',
+                    data: {{ counts|safe }},
+                    backgroundColor: 'rgba(0, 121, 107, 0.8)', // Dark Teal Green background
+                    borderColor: 'rgba(0, 121, 107, 1)', // Dark Teal Green border
+                    borderWidth: 1
+                }]
+            },
+            options: { responsive: true }
+        });
+        
+        // Ratings Chart
+        var ctx2 = document.getElementById('ratingsChart').getContext('2d');
+        new Chart(ctx2, {
+            type: 'pie',
+            data: {
+                labels: ['1 Star', '2 Stars', '3 Stars', '4 Stars', '5 Stars'],
+                datasets: [{
+                    data: {{ rating_counts|safe }},
+                    backgroundColor: [
+                        'rgba(0, 121, 107, 0.8)',  // Dark Teal Green for 1 Star
+                        'rgba(33, 150, 136, 0.8)', // Medium Greenish Teal for 2 Stars
+                        'rgba(0, 121, 107, 0.6)',  // Original Color (Lightened) for 3 Stars
+                        'rgba(0, 105, 92, 0.8)',   // Darker Green for 4 Stars
+                        'rgba(0, 87, 69, 0.8)'     // Very Dark Green for 5 Stars
+                    ]
+                }]
+            },
+            options: { responsive: true }
+        });
+        </script>
+        
+        
+        
+        
+
+{% endblock %}

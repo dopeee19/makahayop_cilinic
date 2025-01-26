@@ -2,11 +2,11 @@
 {% load static %}
 {% block content %}
 {% block head %}
-
+{% include 'header.html' %}
 <link rel="stylesheet" href="{% static 'css/form.css' %}">
     {% endblock %}
 <form method="post">
-    <h1 style="color: black; margin-bottom: 20px;">Register</h1>
+    <h1 style="color: black; margin-bottom: 20px;">Add admin</h1>
     {% csrf_token %}
     <label for="username">Username:</label>
     <input type="text" name="username"  required><br>
